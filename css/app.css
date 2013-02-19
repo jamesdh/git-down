@@ -1,0 +1,90 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+html, body {
+    height: 100%;
+    /* The html and body elements cannot have any padding or margin. */
+}
+
+.input-append.date > .span2 {
+    width: 192px;
+}
+
+td.nowrap, th.nowrap {
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+td img {
+    height: 22px;
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    /* Negative indent footer by it's height */
+    margin: 0 auto -60px;
+}
+
+#downloadify {
+    margin-top: 40px;
+}
+
+/* Set the fixed height of the footer here */
+#push, #footer {
+    height: 60px;
+}
+#footer {
+    background-color: #eee/*#f5f5f5;*/
+}
+
+.container .credit {
+    margin: 15px 0;
+    text-align: center;
+}
+
+/* Lastly, apply responsive CSS fixes as necessary */
+@media (min-width: 1200px) {
+    .body {
+        padding-top: 60px;
+    }
+    .span2 > select {
+        width: 170px;
+    }
+    .input-append.date > .span2 {
+        width: 128px;
+    }
+}
+@media (max-width: 1199px) and (min-width: 979px) {
+    .body {
+        padding-top: 60px;
+    }
+    .span2 > select {
+        width: 150px;
+    }
+    .input-append.date > .span2 {
+        width: 108px;
+    }
+}
+
+@media (max-width: 978px) and (min-width: 767px) {
+    .span2 > select {
+        width: 120px;
+    }
+    .input-append.date > .span2 {
+        width: 78px;
+    }
+}
+
+@media (max-width: 767px) {
+    .body {
+        padding-top: 0;
+    }
+    #footer {
+        margin-left: -20px;
+        margin-right: -20px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
