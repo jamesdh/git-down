@@ -229,12 +229,27 @@ $(window).load(function() {
                     var parts = link.split('; ');
                     if (parts[1] === 'rel="next"') {
                         this.pagingUrl = parts[0].replace('<', '').replace('>', '');
-                        this.fetch({update: true, remove: false});
+                        var that = this;
+                        this.fetch({
+                            update: true,
+                            remove: false,
+                            timeout: 15000,
+                            error: function(errModel, errXhr, errOpts) {
+                                var msg = 'Error when retrieving issues, <a id="retry" href="#">click here to retry</a>';
+                                var errView = new ErrorView({model: msg});
+                                $('#retry').one('click', function() {
+                                    errView.close();
+                                    errView = null;
+                                    that.getPaginatedResults(model, resp, options);
+                                });
+                            }
+                        });
                         return this.pagingUrl;
                     }
                 }, this);
+            } else {
+                this.pagingUrl = null;
             }
-            this.pagingUrl = null;
         },
         setRepo: function(repo) {
             this.repo = repo;
@@ -279,8 +294,9 @@ $(window).load(function() {
             this.$el.html(template);
         },
         close: function() {
+            this.undelegateEvents();
+            this.$el.removeData().unbind();
             this.$el.html("");
-            this.remove();
         }
     });
 
@@ -296,8 +312,9 @@ $(window).load(function() {
             this.$el.html(template);
         },
         close: function() {
+            this.undelegateEvents();
+            this.$el.removeData().unbind();
             this.$el.html("");
-            this.remove();
         }
     });
 
