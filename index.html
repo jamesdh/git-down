@@ -50,6 +50,9 @@
                 information is sent to any 3rd parties. GitHub limits ordinary users to 5000 API requests per hour. Since the
                 below information is retrieved entirely from requests to the GitHub API, you could potentially reach
                 that limit with sufficient use.</h4>
+            <h4>Also Note: There is a <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=608735" target="_blank">2+ year old bug
+                with FireFox</a> that breaks certain features of this app. Thankfully a fix from Mozilla should be in any
+                day now. I won't be working around it, so until it's fixed, use another browser!</h4>
         </div>
         <div id="filters" class="row">
             <div id="repos_view" class="span2">
@@ -139,7 +142,7 @@
 <script type="text/template" id="error_template">
     <div class="alert alert-error">
         <button id="error-close" type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Error: </strong><%= error %>
+        <strong>Woops: </strong><%= error %>
     </div>
 </script>
 
