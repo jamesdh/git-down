@@ -288,9 +288,7 @@ $(window).load(function() {
             "click msg-close": "close"
         },
         initialize: function() {
-            var template = _.template($("#msg_template").html(), {
-                error: this.model
-            });
+            var template = _.template($("#msg_template").html())({error: this.model});
             this.$el.html(template);
         },
         close: function() {
@@ -306,9 +304,7 @@ $(window).load(function() {
             "click error-close": "close"
         },
         initialize: function() {
-            var template = _.template($("#error_template").html(), {
-                error: this.model
-            });
+            var template = _.template($("#error_template").html())({error: this.model});
             this.$el.html(template);
         },
         close: function() {
@@ -357,7 +353,7 @@ $(window).load(function() {
                 success: function(model, resp, options) {
                     $("#motd").fadeOut(500);
                     that.$el.fadeOut(500, function() {
-                        var template = _.template($("#loggedin_template").html(), model.attributes);
+                        var template = _.template($("#loggedin_template").html())(model.attributes);
                         that.$el.html(template);
                         that.$el.fadeIn(500);
                     });
@@ -375,7 +371,7 @@ $(window).load(function() {
         },
         logout: function() {
             this.model.clear();
-            var template = _.template($("#userlogin_template").html(), {});
+            var template = _.template($("#userlogin_template").html())({});
             this.$el.html(template);
             $("#motd").fadeIn(0);
             $("#username").focus();
@@ -446,7 +442,7 @@ $(window).load(function() {
         render: function() {
             var rows = '';
             this.collection.each(function(issue) {
-                rows += _.template($("#issue_template").html(), issue.attributes);
+                rows += _.template($("#issue_template").html())(issue.attributes);
             }, this);
             this.$el.html(rows);
         }

@@ -2,6 +2,7 @@
 -------------------------------------------------- */
 html, body {
     height: 100%;
+    font-weight: 200 !important;
     /* The html and body elements cannot have any padding or margin. */
 }
 
@@ -46,8 +47,8 @@ td img {
 
 /* Lastly, apply responsive CSS fixes as necessary */
 @media (min-width: 1200px) {
-    .body {
-        padding-top: 60px;
+    .theme-showcase {
+        padding-top: 70px;
     }
     .span2 > select {
         width: 170px;
@@ -57,8 +58,8 @@ td img {
     }
 }
 @media (max-width: 1199px) and (min-width: 979px) {
-    .body {
-        padding-top: 60px;
+    .theme-showcase {
+        padding-top: 70px;
     }
     .span2 > select {
         width: 150px;
@@ -78,7 +79,7 @@ td img {
 }
 
 @media (max-width: 767px) {
-    .body {
+    .theme-showcase {
         padding-top: 0;
     }
     #footer {

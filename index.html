@@ -6,12 +6,12 @@
 
     <!--Styling-->
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
     <link rel="stylesheet" type="text/css" href="css/datepicker.css">
     <link rel="stylesheet" type="text/css" href="css/app.css">
 
     <!--Javascript-->
-    <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
     <script type="text/javascript" src="js/underscore-min.js"></script>
@@ -24,24 +24,26 @@
 </head>
 <body>
 <div id="wrap">
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container"><a class="brand" href="#">Git Down</a>
-                <div id="rate_view">
-                    <ul class="nav">
-                        <li><a id="rate" target="_blank" href="http://developer.github.com/v3/#rate-limiting"></a></li>
-                    </ul>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">GitDown</a>
                 </div>
-
-                <form><div id="user_view" class="pull-right"></div></form>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <div id="rate_view">
+                        <ul class="nav navbar-nav">
+                            <li><a id="rate" target="_blank" href="http://developer.github.com/v3/#rate-limiting"></a></li>
+                        </ul>
+                    </div>
+                    <div class="navbar-right"><div id="user_view" class="pull-right"></div></div>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="container body">
+    </nav>
+    <div class="container theme-showcase">
         <div id="msg_view"></div>
         <div id="error_view"></div>
 
-        <div id="motd" class="hero-unit">
+        <div id="motd" class="jumbotron">
             <p>Git Down allows you to download GitHub issues in a comma seperated format for any repository that you
                 are a member of.</p>
             <p>To get started, simply enter your GitHub login credentials above and any issues will be ready
@@ -50,23 +52,20 @@
                 information is sent to any 3rd parties. GitHub limits ordinary users to 5000 API requests per hour. Since the
                 below information is retrieved entirely from requests to the GitHub API, you could potentially reach
                 that limit with sufficient use.</h4>
-            <h4>Also Note: There is a <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=608735" target="_blank">2+ year old bug
-                with FireFox</a> that breaks certain features of this app. Thankfully a fix from Mozilla should be in any
-                day now. I won't be working around it, so until it's fixed, use another browser!</h4>
         </div>
         <div id="filters" class="row">
-            <div id="repos_view" class="span2">
+            <div id="repos_view" class="col-sm-2">
                 <h4>Repositories</h4>
-                <select id="repos_select">
+                <select id="repos_select" class="form-control">
                     <option disabled="disabled">None Available</option>
                 </select>
             </div>
-            <div id="status_view" class="span2">
+            <div id="status_view" class="col-sm-2">
                 <h4>Status</h4>
-                <select id="status_select">
+                <select id="status_select" class="form-control">
                 </select>
             </div>
-            <div class="span2">
+            <div class="col-sm-2">
                 <p id="downloadify">
                     You must have Flash installed to download this file.
                 </p>
@@ -114,19 +113,28 @@
 <!--LOGIN TEMPLATE-->
 <script type="text/template" id="userlogin_template">
     <div class="navbar-form">
-        <input id="username" class="login span2" type="text" placeholder="GitHub Username">
-        <input id="password" class="login span2" type="password" placeholder="GitHub Password">
-        <button id="login" type="submit" class="btn">Go!</button>
+        <div class="form-group">
+            <input id="username" class="login span2 form-control" type="text" placeholder="GitHub Username">
+        </div>
+        <div class="form-group">
+            <input id="password" class="login span2 form-control" type="password" placeholder="GitHub Password">
+        </div>
+        <button id="login" type="submit" class="btn btn-default">Go!</button>
     </div>
 </script>
 
 <!--USER TEMPLATE-->
 <script type="text/template" id="loggedin_template">
     <div>
-        <ul class="nav">
-            <li><a target="_blank" href="<%= html_url %>"><%= name %></a></li>
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= name %><span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a target="_blank" href="<%= html_url %>">GitHub Profile</a></li>
+                    <li><a id="logout" href="#">Logout</a></li>
+                </ul>
+            </li>
         </ul>
-        <button id="logout" type="submit" class="btn">Logout</button>
     </div>
 </script>
 
